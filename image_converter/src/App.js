@@ -12,14 +12,16 @@ function App() {
     return (
         <>
             <Navbar />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/convert" element={<Convert />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/logout" element={<Logout />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/signup" element={<SignUp />} />
-            </Routes>
+            <div style={{ padding: "50px" }}>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/convert" element={<Convert />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/logout" element={<Logout />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/signup" element={<SignUp />} />
+                </Routes>
+            </div>
         </>
     );
 }

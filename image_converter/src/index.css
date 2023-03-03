@@ -2,17 +2,13 @@
 
 *{
   box-sizing: border-box;
-  color: #DFF6FF;
+  font-family: 'Poppins', sans-serif;
 }
 
 
 body {
   margin: 0;
   background-color: #1363DF;
-  
-  font-family: 'Poppins', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 code {

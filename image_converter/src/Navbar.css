@@ -27,11 +27,13 @@
     transition: all .4s ease;
     padding: 0.5rem 1rem;
     border-radius: 30px;
+    color: #DFF6FF;
 }
 
 .site-title{
     padding-left: 1rem;
-    color: #1363DF;
+    color: #DFF6FF;
+    text-decoration-color: #1363DF;
 }
 
 .nav li.active > a{
@@ -43,5 +45,3 @@
     color: #1363DF;
     background-color: rgb(223, 246, 255);
 }
-
-
