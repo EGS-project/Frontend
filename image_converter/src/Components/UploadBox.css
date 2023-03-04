@@ -36,3 +36,7 @@
 .filepond--list-scroller{
     border-radius: 30px;
 }
+
+.filepond--drip-blob {
+    background-color: #DFF6FF;
+}
