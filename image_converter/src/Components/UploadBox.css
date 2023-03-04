@@ -1,3 +1,38 @@
 .filepond--drop-label {
-    color: #1363DF;
+    color: #DFF6FF !important;
+    font-size: 30px !important;
+    width: 50%;
+    position: relative;
+    border-radius: 40px;
+}
+
+.filepond--panel-root {
+    background-color: #ff000000;
+}
+
+.filepond--wrapper{
+    height: 30rem !important;
+}
+
+.filepond--root{
+    background-color: rgba(6, 40, 61, 0.2);
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+    backdrop-filter: blur(5px);
+    height: 100% !important;
+    border-radius: 30px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.filepond--browser{
+    height: 400px !important;
+}
+
+.filepond--item{
+    height: 100% !important;
+}
+
+.filepond--list-scroller{
+    border-radius: 30px;
 }

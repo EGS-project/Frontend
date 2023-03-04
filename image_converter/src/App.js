@@ -12,7 +12,7 @@ function App() {
     return (
         <>
             <Navbar />
-            <div style={{ padding: "50px" }}>
+            <div /*style={{ padding: "50px" }}*/>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/convert" element={<Convert />} />

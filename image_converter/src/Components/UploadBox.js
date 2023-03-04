@@ -5,6 +5,7 @@ import { FilePond, registerPlugin } from "react-filepond";
 
 // Import FilePond styles
 import "filepond/dist/filepond.min.css";
+import "./UploadBox.css";
 
 // Import the Image EXIF Orientation and Image Preview plugins
 // Note: These need to be installed separately
@@ -30,6 +31,7 @@ function UploadBox() {
                     server="/api"
                     name="files"
                     labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+                    stylePanelLayout={"compact"}
                 />
             </div>
         </>
