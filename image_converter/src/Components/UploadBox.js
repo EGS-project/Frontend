@@ -1,41 +1,98 @@
 import React, { useState } from "react";
-
-// Import React FilePond
-import { FilePond, registerPlugin } from "react-filepond";
-
-// Import FilePond styles
-import "filepond/dist/filepond.min.css";
+import { CSSTransition } from "react-transition-group";
 import "./UploadBox.css";
-
-// Import the Image EXIF Orientation and Image Preview plugins
-// Note: These need to be installed separately
-// `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
-import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
-import FilePondPluginImagePreview from "filepond-plugin-image-preview";
-import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
-
-// Register the plugins
-registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 // Our app
 function UploadBox() {
-    const [files, setFiles] = useState([]);
-    return (
-        <>
-            <div>
-                <FilePond
-                    files={files}
-                    onupdatefiles={setFiles}
-                    allowMultiple={false}
-                    maxFiles={1}
-                    server="/api"
-                    name="files"
-                    labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
-                    stylePanelLayout={"compact"}
-                />
-            </div>
-        </>
-    );
+    const [file, setFile] = useState();
+    const [fileObject, setFileObject] = useState();
+    const [imgchanged, setImgchanged] = useState(false);
+    function handleChange(e) {
+        console.log(e.target.files);
+        setFile(URL.createObjectURL(e.target.files[0]));
+        setFileObject(e.target.files[0]);
+        setImgchanged(true);
+    }
+    const inputRef = React.useRef();
+
+    function CardType(addedFile) {
+        if (addedFile) {
+            return <AfterImage />;
+        } else {
+            return <BeforeImage />;
+        }
+    }
+
+    function BeforeImage() {
+        return (
+            <>
+                <button
+                    className="button-add-file"
+                    //onClick={() => inputRef.current.click()}
+                >
+                    <h1>Drag & Drop image or Browse!</h1>
+                    <input
+                        ref={inputRef}
+                        type="file"
+                        onChange={handleChange}
+                        style={{
+                            opacity: "0",
+                            position: "absolute",
+                            width: "100%",
+                            height: "100%",
+                            cursor: "pointer",
+                        }}
+                        title={" "}
+                        accept="image/*"
+                    />
+                </button>
+            </>
+        );
+    }
+
+    function AfterImage() {
+        return (
+            <>
+                <div
+                    className="card-img-added"
+                    //onClick={() => inputRef.current.click()}
+                >
+                    <p>This is your image, how do you wish to convert it?</p>
+                    <div className="img-box">
+                        <img id="image-preview" src={file} alt="" />
+                        <p style={{ fontSize: "0.8rem" }}>
+                            Your image size is: {fileObject.size} Bytes
+                        </p>
+                        <button
+                            className="little-button-add-file"
+                            //onClick={() => inputRef.current.click()}
+                        >
+                            <p>Select another image</p>
+                            <input
+                                ref={inputRef}
+                                type="file"
+                                onChange={handleChange}
+                                style={{
+                                    opacity: "0",
+                                    position: "absolute",
+                                    width: "100%",
+                                    height: "100%",
+                                    cursor: "pointer",
+                                    backgroundColor: "black",
+                                    top: "0",
+                                    left: "0",
+                                }}
+                                title={" "}
+                                accept="image/*"
+                            />
+                        </button>
+                    </div>
+                </div>
+            </>
+        );
+    }
+
+    return CardType(imgchanged);
 }
 
 export default UploadBox;
