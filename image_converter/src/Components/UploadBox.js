@@ -23,6 +23,45 @@ function UploadBox() {
         }
     }
 
+    function uploadImage(imageFile) {
+        //Use MIME
+        const formData = new FormData();
+        formData.append("image", imageFile);
+
+        fetch("https://example.com/upload", {
+            method: "POST",
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+            body: formData,
+        })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+        //http POST
+        //2 endpoints(one for json and one for image http post)
+        //openapi documentation
+
+        /*var jsonData = {
+            users: [
+                {
+                    name: "alan",
+                    age: 23,
+                    username: "aturing",
+                },
+                {
+                    name: "john",
+                    age: 29,
+                    username: "__john__",
+                },
+            ],
+        };*/
+    }
+
     function BeforeImage() {
         return (
             <>
@@ -57,14 +96,24 @@ function UploadBox() {
                     className="card-img-added"
                     //onClick={() => inputRef.current.click()}
                 >
-                    <p>This is your image, how do you wish to convert it?</p>
+                    <div className="function-box">
+                        <p>
+                            This is your image, how do you wish to convert it?
+                        </p>
+                        <button
+                            className="white-button"
+                            onClick={() => uploadImage(fileObject)}
+                        >
+                            <p>Convert</p>
+                        </button>
+                    </div>
                     <div className="img-box">
                         <img id="image-preview" src={file} alt="" />
                         <p style={{ fontSize: "0.8rem" }}>
                             Your image size is: {fileObject.size} Bytes
                         </p>
                         <button
-                            className="little-button-add-file"
+                            className="white-button"
                             //onClick={() => inputRef.current.click()}
                         >
                             <p>Select another image</p>
