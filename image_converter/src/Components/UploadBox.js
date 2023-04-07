@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { CSSTransition } from "react-transition-group";
-import "./UploadBox.css";
+import React, { useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
+import './UploadBox.css';
 
 // Our app
 function UploadBox() {
@@ -24,15 +24,19 @@ function UploadBox() {
     }
 
     function uploadImage(imageFile) {
-        //Use MIME
         const formData = new FormData();
-        formData.append("image", imageFile);
-
-        fetch("https://example.com/upload", {
-            method: "POST",
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
+        formData.append('image', imageFile);
+        console.log(formData);
+        const size = imageFile.size;
+        const type = imageFile.type.split('/')[1];
+        var fetchString =
+            'http://localhost:5000/api/v1/convert/to-jpeg?format=' +
+            type +
+            '&size=' +
+            size;
+        fetch(fetchString, {
+            method: 'POST',
+            mode: 'no-cors',
             body: formData,
         })
             .then((response) => {
@@ -41,25 +45,6 @@ function UploadBox() {
             .catch((error) => {
                 console.error(error);
             });
-
-        //http POST
-        //2 endpoints(one for json and one for image http post)
-        //openapi documentation
-
-        /*var jsonData = {
-            users: [
-                {
-                    name: "alan",
-                    age: 23,
-                    username: "aturing",
-                },
-                {
-                    name: "john",
-                    age: 29,
-                    username: "__john__",
-                },
-            ],
-        };*/
     }
 
     function BeforeImage() {
@@ -73,15 +58,16 @@ function UploadBox() {
                     <input
                         ref={inputRef}
                         type="file"
+                        name="image"
                         onChange={handleChange}
                         style={{
-                            opacity: "0",
-                            position: "absolute",
-                            width: "100%",
-                            height: "100%",
-                            cursor: "pointer",
+                            opacity: '0',
+                            position: 'absolute',
+                            width: '100%',
+                            height: '100%',
+                            cursor: 'pointer',
                         }}
-                        title={" "}
+                        title={' '}
                         accept="image/*"
                     />
                 </button>
@@ -109,7 +95,7 @@ function UploadBox() {
                     </div>
                     <div className="img-box">
                         <img id="image-preview" src={file} alt="" />
-                        <p style={{ fontSize: "0.8rem" }}>
+                        <p style={{ fontSize: '0.8rem' }}>
                             Your image size is: {fileObject.size} Bytes
                         </p>
                         <button
@@ -120,18 +106,19 @@ function UploadBox() {
                             <input
                                 ref={inputRef}
                                 type="file"
+                                name="image"
                                 onChange={handleChange}
                                 style={{
-                                    opacity: "0",
-                                    position: "absolute",
-                                    width: "100%",
-                                    height: "100%",
-                                    cursor: "pointer",
-                                    backgroundColor: "black",
-                                    top: "0",
-                                    left: "0",
+                                    opacity: '0',
+                                    position: 'absolute',
+                                    width: '100%',
+                                    height: '100%',
+                                    cursor: 'pointer',
+                                    backgroundColor: 'black',
+                                    top: '0',
+                                    left: '0',
                                 }}
-                                title={" "}
+                                title={' '}
                                 accept="image/*"
                             />
                         </button>
