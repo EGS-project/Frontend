@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { CSSTransition } from 'react-transition-group';
 import './UploadBox.css';
 
 // Our app
@@ -7,13 +6,19 @@ function UploadBox() {
     const [file, setFile] = useState();
     const [fileObject, setFileObject] = useState();
     const [imgchanged, setImgchanged] = useState(false);
-    function handleChange(e) {
+    const [targetEndPoint, setTargetEndPoint] = useState('');
+    const inputRef = React.useRef();
+
+    function handleChangeImage(e) {
         console.log(e.target.files);
         setFile(URL.createObjectURL(e.target.files[0]));
         setFileObject(e.target.files[0]);
         setImgchanged(true);
     }
-    const inputRef = React.useRef();
+
+    function handleChangeRadio(e) {
+        setTargetEndPoint(e.target.value);
+    }
 
     function CardType(addedFile) {
         if (addedFile) {
@@ -26,25 +31,35 @@ function UploadBox() {
     function uploadImage(imageFile) {
         const formData = new FormData();
         formData.append('image', imageFile);
-        console.log(formData);
         const size = imageFile.size;
         const type = imageFile.type.split('/')[1];
-        var fetchString =
-            'http://localhost:5000/api/v1/convert/to-jpeg?format=' +
-            type +
-            '&size=' +
-            size;
-        fetch(fetchString, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: formData,
-        })
-            .then((response) => {
-                console.log(response);
+
+        if (targetEndPoint === '') {
+            alert('You have to select one option');
+            return;
+        } else {
+            var fetchString =
+                'http://localhost:5000/api/v1/convert/to-' +
+                targetEndPoint +
+                '?format=' +
+                type +
+                '&size=' +
+                size;
+
+            alert(fetchString);
+
+            fetch(fetchString, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData,
             })
-            .catch((error) => {
-                console.error(error);
-            });
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
     }
 
     function BeforeImage() {
@@ -59,7 +74,7 @@ function UploadBox() {
                         ref={inputRef}
                         type="file"
                         name="image"
-                        onChange={handleChange}
+                        onChange={handleChangeImage}
                         style={{
                             opacity: '0',
                             position: 'absolute',
@@ -86,6 +101,58 @@ function UploadBox() {
                         <p>
                             This is your image, how do you wish to convert it?
                         </p>
+                        <div className="radio-buttons">
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="png"
+                                    name="desiredType"
+                                    checked={targetEndPoint === 'png'}
+                                    onChange={handleChangeRadio}
+                                />
+                                To png
+                            </label>
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="jpeg"
+                                    name="desiredType"
+                                    checked={targetEndPoint === 'jpeg'}
+                                    onChange={handleChangeRadio}
+                                />
+                                To jpeg
+                            </label>
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="ppm"
+                                    name="desiredType"
+                                    checked={targetEndPoint === 'ppm'}
+                                    onChange={handleChangeRadio}
+                                />
+                                To ppm
+                            </label>
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="tiff"
+                                    name="desiredType"
+                                    checked={targetEndPoint === 'tiff'}
+                                    onChange={handleChangeRadio}
+                                />
+                                To tiff
+                            </label>
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="bmp"
+                                    name="desiredType"
+                                    checked={targetEndPoint === 'bmp'}
+                                    onChange={handleChangeRadio}
+                                />
+                                To bmp
+                            </label>
+                        </div>
                         <button
                             className="white-button"
                             onClick={() => uploadImage(fileObject)}
@@ -107,7 +174,7 @@ function UploadBox() {
                                 ref={inputRef}
                                 type="file"
                                 name="image"
-                                onChange={handleChange}
+                                onChange={handleChangeImage}
                                 style={{
                                     opacity: '0',
                                     position: 'absolute',

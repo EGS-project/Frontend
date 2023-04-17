@@ -81,3 +81,12 @@
     background-color: #06283D;
     border-radius: 30px;
 }
+
+.radio-buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+    left: 50px;
+    height: 45%;
+}
