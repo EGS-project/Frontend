@@ -4,12 +4,11 @@ import "./Navbar.css";
 export default function Navbar() {
     return (
         <nav className="nav">
-            <Link to="/" className="site-title">
+            <Link to="/convert" className="site-title">
                 <h2>ImgConv</h2>
             </Link>
             <ul>
                 <CustomLink to="/login">Login</CustomLink>
-                <CustomLink to="/signup">Sign Up</CustomLink>
                 <CustomLink to="/convert">Convert Image</CustomLink>
                 <CustomLink to="/profile">My Profile</CustomLink>
                 <CustomLink to="/logout">Logout</CustomLink>

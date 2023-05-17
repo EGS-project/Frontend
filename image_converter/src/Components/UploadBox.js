@@ -39,22 +39,24 @@ function UploadBox() {
             return;
         } else {
             var fetchString =
-                'http://localhost:5000/api/v1/convert/to-' +
-                targetEndPoint +
+                'http://localhost:8888/api/v1/convert' +
                 '?format=' +
                 type +
                 '&size=' +
-                size;
+                size +
+                '&target_format=' +
+                targetEndPoint;
 
             alert(fetchString);
 
             fetch(fetchString, {
                 method: 'POST',
-                mode: 'no-cors',
                 body: formData,
             })
+                .then(response => response.json())
                 .then((response) => {
                     console.log(response);
+
                 })
                 .catch((error) => {
                     console.error(error);
@@ -67,7 +69,7 @@ function UploadBox() {
             <>
                 <button
                     className="button-add-file"
-                    //onClick={() => inputRef.current.click()}
+                //onClick={() => inputRef.current.click()}
                 >
                     <h1>Drag & Drop image or Browse!</h1>
                     <input
@@ -95,7 +97,7 @@ function UploadBox() {
             <>
                 <div
                     className="card-img-added"
-                    //onClick={() => inputRef.current.click()}
+                //onClick={() => inputRef.current.click()}
                 >
                     <div className="function-box">
                         <p>
@@ -167,7 +169,7 @@ function UploadBox() {
                         </p>
                         <button
                             className="white-button"
-                            //onClick={() => inputRef.current.click()}
+                        //onClick={() => inputRef.current.click()}
                         >
                             <p>Select another image</p>
                             <input

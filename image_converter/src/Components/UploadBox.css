@@ -1,8 +1,6 @@
-
-
-.button-add-file{
+.button-add-file {
     background-color: rgba(6, 40, 61, 0.2);
-    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
     backdrop-filter: blur(5px);
     height: 100% !important;
     width: 100%;
@@ -17,7 +15,7 @@
     position: relative;
 }
 
-.white-button{
+.white-button {
     position: relative;
     cursor: pointer;
     border-style: none;
@@ -26,17 +24,17 @@
     border-radius: 30px;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
     transition: all .5s ease;
 }
 
-.white-button:hover{
-    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .5); 
+.white-button:hover {
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .5);
 }
 
-.card-img-added{
+.card-img-added {
     background-color: rgba(223, 246, 255, 0.6);
-    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
     backdrop-filter: blur(5px);
     height: 100% !important;
     width: 100%;
@@ -51,11 +49,11 @@
     position: relative;
 }
 
-.button-add-file:hover{
-    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .5); 
+.button-add-file:hover {
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .5);
 }
 
-.img-box{
+.img-box {
     width: 35%;
     height: 100%;
     position: relative;
@@ -65,24 +63,24 @@
     justify-content: space-around;
 }
 
-.function-box{
+.function-box {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-around;
     height: 100%;
     width: 65%;
-    
+
 }
 
-#image-preview{
+#image-preview {
     max-height: 75%;
     max-width: 100%;
     background-color: #06283D;
     border-radius: 30px;
 }
 
-.radio-buttons{
+.radio-buttons {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
