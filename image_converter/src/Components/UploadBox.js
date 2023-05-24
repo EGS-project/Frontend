@@ -40,7 +40,7 @@ function UploadBox() {
         } else {
             var fetchString =
                 process.env.REACT_APP_COMPOSER_URL +
-                '/api/v1/convert' +
+                '/convert' +
                 '?format=' +
                 type +
                 '&size=' +
