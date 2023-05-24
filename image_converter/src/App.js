@@ -12,11 +12,11 @@ function App() {
                 <Routes>
                     <Route path="/convert" element={<Convert />} />
                     <Route path="/login" component={() => {
-                        window.location.href = '/api/v1/auth/login';
+                        window.location.href = process.env.REACT_APP_PROXY_URL + '/login';
                         return null;
                     }} />
                     <Route path="/logout" component={() => {
-                        window.location.href = '/api/v1/auth/logout';
+                        window.location.href = process.env.REACT_APP_PROXY_URL + '/logout';
                         return null;
                     }} />
                     <Route path="/profile" element={<Profile />} />
