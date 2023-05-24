@@ -39,7 +39,8 @@ function UploadBox() {
             return;
         } else {
             var fetchString =
-                'http://localhost:8888/api/v1/convert' +
+                process.env.REACT_APP_COMPOSER_URL +
+                '/api/v1/convert' +
                 '?format=' +
                 type +
                 '&size=' +
