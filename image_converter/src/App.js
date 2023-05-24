@@ -1,6 +1,7 @@
 import "./App.css";
 import Navbar from "./Navbar";
 import Convert from "./pages/Convert";
+import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import { Route, Routes } from "react-router-dom";
 
@@ -10,6 +11,7 @@ function App() {
             <Navbar />
             <div /*style={{ padding: "50px" }}*/>
                 <Routes>
+                    <Route path="/" element={<Home />} />
                     <Route path="/convert" element={<Convert />} />
                     <Route path="/login" component={() => {
                         window.location.href = process.env.REACT_APP_PROXY_URL + '/login';

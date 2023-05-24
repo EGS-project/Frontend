@@ -4,7 +4,7 @@ import "./Navbar.css";
 export default function Navbar() {
     return (
         <nav className="nav">
-            <Link to="/convert" className="site-title">
+            <Link to="/" className="site-title">
                 <h2>ImgConv</h2>
             </Link>
             <ul>
