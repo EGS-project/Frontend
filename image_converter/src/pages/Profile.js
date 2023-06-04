@@ -1,5 +1,7 @@
 import "./profile.css";
 import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 function GetInfo() {
     const [data, setData] = useState(null);
@@ -11,6 +13,9 @@ function GetInfo() {
     const fetchData = async () => {
         try {
             const response = await fetch(process.env.REACT_APP_PROXY_URL + '/user');
+            if (response.status === 404) {
+                throw Error;
+            }
             const jsonData = await response.json();
             setData(jsonData);
         } catch (error) {
@@ -76,7 +81,24 @@ function GetInfo() {
     );
 }
 
+function getCookie(cookieName) {
+    return Cookies.get(cookieName);
+}
+
 export default function History() {
+    const navigate = useNavigate();
+    const cookieName = process.env.REACT_APP_COOKIE_NAME;
+    useEffect(() => {
+        var cookie = getCookie(cookieName);
+        if (cookie !== undefined) {
+            console.log('Cookie exists!');
+        } else {
+            console.log('Cookie does not exist!');
+            navigate('/login')
+        }
+    }, [navigate, cookieName]);
+
+
     return (
         <>
             <div className="background-div">

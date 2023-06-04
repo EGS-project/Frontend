@@ -3,6 +3,8 @@ import Navbar from "./Navbar";
 import Convert from "./pages/Convert";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+import Login from "./pages/Login"
+import Logout from "./pages/Logout"
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -13,14 +15,8 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/convert" element={<Convert />} />
-                    <Route path="/login" component={() => {
-                        window.location.href = process.env.REACT_APP_PROXY_URL + '/login';
-                        return null;
-                    }} />
-                    <Route path="/logout" component={() => {
-                        window.location.href = process.env.REACT_APP_PROXY_URL + '/logout';
-                        return null;
-                    }} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/logout" element={<Logout />} />
                     <Route path="/profile" element={<Profile />} />
                 </Routes>
             </div>
