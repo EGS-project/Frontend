@@ -38,18 +38,12 @@ export default function Login() {
 
             if (cookie !== undefined) {
                 console.log('Cookie exists!');
-                //navigate('/')
-                //window.location.reload(true);
+                navigate('/')
             } else {
-                //console.log('Cookie does not exist!');
-                //navigate('/')
-                var logged = login();
-                if (logged) {
-                    //window.location.reload(true);
-                } else {
-                    console.log("login failed")
-                    alert("Login failed!")
-                }
+                console.log('Cookie does not exist!');
+                navigate('/')
+                window.open(process.env.REACT_APP_PROXY_URL + "/api/v1/login", "_blank");
+                window.location.reload(true);
             }
         }
 

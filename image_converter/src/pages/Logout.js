@@ -36,18 +36,13 @@ export default function Logout() {
             var cookie = getCookie(cookieName);
             if (cookie !== undefined) {
                 console.log('Cookie exists!');
-                //navigate('/')
-                var successfulLogout = await logout();
-                if (successfulLogout) {
-                    console.log("logout successful");
-                    //window.location.reload(true);
-                } else {
-                    console.log("logout failed");
-                }
+                navigate('/')
+
             } else {
                 console.log('Cookie does not exist!');
-                //window.location.reload(true);
-                //navigate('/')
+                window.open(process.env.REACT_APP_PROXY_URL + "/api/v1/logout", "_blank");
+                window.location.reload(true);
+                navigate('/')
             }
         }
         fetchData();
