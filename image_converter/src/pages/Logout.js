@@ -9,8 +9,11 @@ function getCookie(cookieName) {
 async function logout() {
     const fetchData = async () => {
         try {
-            const response = await fetch(process.env.REACT_APP_PROXY_URL + "/api/v1/logout");
+            const response = await fetch(process.env.REACT_APP_PROXY_URL + "/api/v1/logout", {
+                'credentials': 'include',
+            })
             if (response.ok) {
+                console.log("logout ok")
                 return true;
             } else {
                 throw new Error(response.status);
@@ -33,18 +36,18 @@ export default function Logout() {
             var cookie = getCookie(cookieName);
             if (cookie !== undefined) {
                 console.log('Cookie exists!');
-                navigate('/')
-                window.open(process.env.REACT_APP_PROXY_URL + "/api/v1/logout", '_blank');
+                //navigate('/')
                 var successfulLogout = await logout();
                 if (successfulLogout) {
                     console.log("logout successful");
-                    window.location.reload(true);
+                    //window.location.reload(true);
                 } else {
                     console.log("logout failed");
                 }
             } else {
                 console.log('Cookie does not exist!');
-                navigate('/')
+                //window.location.reload(true);
+                //navigate('/')
             }
         }
         fetchData();
