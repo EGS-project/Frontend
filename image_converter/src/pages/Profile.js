@@ -70,7 +70,7 @@ function GetInfo() {
                 <div className="user-history">
                     <ul>
                         {conv_history.map((item, index) => (
-                            <li key={index}><a href={item} target="_blank">{item}</a></li>
+                            <li key={index}><a href={item.replace(/"|'/g, '')} target="_blank">{item.replace(/"|'/g, '')}</a></li>
                         ))}
                     </ul>
                 </div>
@@ -92,7 +92,7 @@ export default function Profile() {
             console.log('Cookie exists!');
         } else {
             console.log('Cookie does not exist!');
-            navigate('/login')
+            //navigate('/login')
         }
     }, [navigate, cookieName]);
 
