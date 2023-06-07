@@ -42,8 +42,8 @@ export default function Login() {
             } else {
                 console.log('Cookie does not exist!');
                 navigate('/')
-                window.open(process.env.REACT_APP_PROXY_URL + "/api/v1/login", "_blank");
-                window.location.reload(true);
+                window.location.replace(process.env.REACT_APP_PROXY_URL + "/api/v1/login");
+                //window.location.reload(true);
             }
         }
 

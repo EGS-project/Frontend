@@ -12,7 +12,7 @@ function GetInfo() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch(process.env.REACT_APP_PROXY_URL + '/user');
+            const response = await fetch(process.env.REACT_APP_PROXY_URL + '/api/v1/user');
             if (response.status === 404) {
                 throw Error;
             }
@@ -32,49 +32,45 @@ function GetInfo() {
     return (
         <>
             <div className="wrapper-div-profile">
-                <h1>My profile</h1>
+                <h1>Hello, {String(email).split('@')[0]}!</h1>
                 <div className="user-data">
                     {/*profile picture*/}
-
+                    <img src={profile_picture} className="prof-image" />
                     <ul className="profile-info-ul">
                         <li>
-                            <p>Nickname:</p>
-                            <p style={{ paddingLeft: 10 }}>{nickname}</p>
-                        </li>
-                        <li>
-                            <p>Email address:</p>
+                            <p className="profile-sub">Email address:</p>
                             <p style={{ paddingLeft: 10 }}>{email}</p>
                         </li>
                         <li>
-                            <p>Authentication type:</p>
+                            <p className="profile-sub">Authentication type:</p>
                             <p style={{ paddingLeft: 10 }}>{auth_type}</p>
                         </li>
                         <li>
-                            <p>Premium:</p>
-                            <p style={{ paddingLeft: 10 }}>{premium}</p>
+                            <p className="profile-sub">Premium:</p>
+                            <p style={{ paddingLeft: 10 }}>{String(premium)}</p>
                         </li>
                         <li>
-                            <p>Email notification:</p>
-                            <p style={{ paddingLeft: 10 }}>{email_notification}</p>
+                            <p className="profile-sub">Email notification:</p>
+                            <p style={{ paddingLeft: 10 }}>{String(email_notification)}</p>
                         </li>
                         <li>
-                            <p>Whatsapp notification:</p>
-                            <p style={{ paddingLeft: 10 }}>{whatsapp_notification}</p>
+                            <p className="profile-sub">Whatsapp notification:</p>
+                            <p style={{ paddingLeft: 10 }}>{String(whatsapp_notification)}</p>
                         </li>
                         <li>
-                            <p>SMS notification:</p>
-                            <p style={{ paddingLeft: 10 }}>{sms_notification}</p>
+                            <p className="profile-sub">SMS notification:</p>
+                            <p style={{ paddingLeft: 10 }}>{String(sms_notification)}</p>
                         </li>
                     </ul>
 
                 </div>
-
-
                 <h1>Convertion history</h1>
                 <div className="user-history">
-                    {conv_history.map((item, index) => (
-                        <li key={index}>{item}</li>
-                    ))}
+                    <ul>
+                        {conv_history.map((item, index) => (
+                            <li key={index}>{item}</li>
+                        ))}
+                    </ul>
                 </div>
             </div>
         </>
@@ -85,7 +81,7 @@ function getCookie(cookieName) {
     return Cookies.get(cookieName);
 }
 
-export default function History() {
+export default function Profile() {
     const navigate = useNavigate();
     const cookieName = process.env.REACT_APP_COOKIE_NAME;
     useEffect(() => {

@@ -36,12 +36,11 @@ export default function Logout() {
             var cookie = getCookie(cookieName);
             if (cookie !== undefined) {
                 console.log('Cookie exists!');
+                window.location.replace(process.env.REACT_APP_PROXY_URL + "/api/v1/logout");
                 navigate('/')
 
             } else {
                 console.log('Cookie does not exist!');
-                window.open(process.env.REACT_APP_PROXY_URL + "/api/v1/logout", "_blank");
-                window.location.reload(true);
                 navigate('/')
             }
         }

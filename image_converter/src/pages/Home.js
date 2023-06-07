@@ -23,7 +23,7 @@ export default function Home() {
     return (
         <>
             <div className="background-div-home">
-                <h1>Welcome to imgConv!</h1>
+                <h1>Welcome to ImgConv!</h1>
                 <h3>Your all in one image convertion service</h3>
             </div>
         </>
