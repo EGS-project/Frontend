@@ -92,7 +92,7 @@ export default function Profile() {
             console.log('Cookie exists!');
         } else {
             console.log('Cookie does not exist!');
-            //navigate('/login')
+            navigate('/login')
         }
     }, [navigate, cookieName]);
 
