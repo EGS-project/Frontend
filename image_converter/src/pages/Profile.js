@@ -2,6 +2,7 @@ import "./profile.css";
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import Switch from '@mui/material/Switch';
 
 function GetInfo() {
     const [data, setData] = useState(null);
@@ -40,6 +41,7 @@ function GetInfo() {
                         <li>
                             <p className="profile-sub">Email address:</p>
                             <p style={{ paddingLeft: 10 }}>{email}</p>
+
                         </li>
                         <li>
                             <p className="profile-sub">Authentication type:</p>
@@ -47,28 +49,28 @@ function GetInfo() {
                         </li>
                         <li>
                             <p className="profile-sub">Premium:</p>
-                            <p style={{ paddingLeft: 10 }}>{String(premium)}</p>
+                            <Switch label="label" />
                         </li>
                         <li>
                             <p className="profile-sub">Email notification:</p>
-                            <p style={{ paddingLeft: 10 }}>{String(email_notification)}</p>
+                            <Switch label="label" defaultChecked />
                         </li>
                         <li>
                             <p className="profile-sub">Whatsapp notification:</p>
-                            <p style={{ paddingLeft: 10 }}>{String(whatsapp_notification)}</p>
+                            <Switch label="label" />
                         </li>
                         <li>
                             <p className="profile-sub">SMS notification:</p>
-                            <p style={{ paddingLeft: 10 }}>{String(sms_notification)}</p>
+                            <Switch label="label" />
                         </li>
                     </ul>
 
                 </div>
-                <h1>Convertion history</h1>
+                <h1>Conversion history</h1>
                 <div className="user-history">
                     <ul>
                         {conv_history.map((item, index) => (
-                            <li key={index}>{item}</li>
+                            <li key={index}><a href={item} target="_blank">{item}</a></li>
                         ))}
                     </ul>
                 </div>
